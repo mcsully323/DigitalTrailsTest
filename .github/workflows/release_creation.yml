@@ -38,7 +38,7 @@ jobs:
       - name: Create ZIP file of specific folders
         run: |
           mkdir artifact
-          zip -r artifact/my-release.zip mt-spanish.json JSON new_images videos
+          zip -r artifact/my-release.zip mt-spanish.json JSON assets/new_images assets/videos
 
       # Step 3: Create a GitHub release
       - name: Create GitHub Release
