@@ -23,6 +23,7 @@ jobs:
 
   release:
     name: Create zip file
+    needs: image_resize_job
     runs-on: ubuntu-latest
     steps:
       # Step 1: Checkout the repository
