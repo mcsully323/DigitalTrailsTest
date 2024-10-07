@@ -47,7 +47,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub automatically provides this token
         with:
-          tag_name: "manual-release"  # This uses the tag that triggered the workflow
+          tag_name: "manual-release 0.2"  # This uses the tag that triggered the workflow
           release_name: "Manual Release ${{ github.run_id }}"
           draft: false
           prerelease: false
