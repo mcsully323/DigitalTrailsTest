@@ -1,10 +1,8 @@
 name: Release Creation
 
+
 on:
-  # Allows you to run this workflow manually from the Actions tab
-  push:
-    tags:
-      - 'v*'
+  workflow_call:
 jobs:
   image_resize_and_release:
     name: Image Resize Job
