@@ -12,8 +12,20 @@ on:
         description: 'The folder where the compressed images go'
         required: true
         type: string
-      artifact_folders:
-        description: 'The folders to pack as an artifact'
+      complete_json:
+        description: 'Compiled code'
+        required: true
+        type: string
+      json_folder:
+        description: 'folder with jsons'
+        required: true
+        type: string
+      images_folder:
+        description: 'compressed images'
+        required: true
+        type: string
+      videos_folder:
+        description: 'videos folder'
         required: true
         type: string
         
@@ -37,9 +49,12 @@ jobs:
          vipsthumbnail $IMAGE_FOLDER*.jpeg --size 1300x2600 -o $(readlink -f "$NEW_IMAGE_FOLDER%s.jpeg")
      - name: Create ZIP file of specific folders
        run: |
-          ARTIFACT_FOLDERs=${{ inputs.artifact_folders }}
+          COMPLETE_JSON=${{ inputs.complete_json }}
+          JSON_FOLDER=${{ inputs.json_folder }}
+          IMAGES_FOLDER=${{ inputs.images_folder }}
+          VIDEOS_FOLDER=${{ inputs.videos_folder }}
           mkdir artifact
-          zip -r artifact/my-release.zip $ARTIFACT_FOLDER
+          zip -r artifact/my-release.zip $COMPLETE_JSON $JSON_FOLDER $IMAGES_FOLDER $VIDEOS_FOLDER
      - name: Create GitHub Release
        id: create_release
        uses: actions/create-release@v1
