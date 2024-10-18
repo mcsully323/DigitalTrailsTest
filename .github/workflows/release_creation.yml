@@ -3,6 +3,20 @@ name: Release Creation
 
 on:
   workflow_call:
+    inputs:
+      image_folder: 
+        description: 'The folder with the original images'
+        required: true
+        type: string
+      new_image_folder:
+        description: 'The folder where the compressed images go'
+        required: true
+        type: string
+      artifact_folders:
+        description: 'The folders to pack as an artifact'
+        required: true
+        type: string
+        
 jobs:
   image_resize_and_release:
     name: Image Resize Job
@@ -17,11 +31,15 @@ jobs:
      - name: Install LibVips
        run: sudo apt install libvips-tools
      - name: resize jpeg images
-       run:  vipsthumbnail ./assets/images/*.jpeg --size 1300x2600 -o $(readlink -f "./assets/new_images/%s.jpeg")
+       run:  |
+         IMAGE_FOLDER=${{ inputs.image_folder }}
+         NEW_IMAGE_FOLDER=${{ inputs.new_image_folder }}
+         vipsthumbnail $IMAGE_FOLDER*.jpeg --size 1300x2600 -o $(readlink -f "$NEW_IMAGE_FOLDER%s.jpeg")
      - name: Create ZIP file of specific folders
        run: |
+          ARTIFACT_FOLDERs=${{ inputs.artifact_folders }}
           mkdir artifact
-          zip -r artifact/my-release.zip mt-spanish.json JSON assets/new_images assets/videos
+          zip -r artifact/my-release.zip $ARTIFACT_FOLDER
      - name: Create GitHub Release
        id: create_release
        uses: actions/create-release@v1
