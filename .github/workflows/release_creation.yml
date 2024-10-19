@@ -14,11 +14,11 @@ on:
         type: string
       complete_json:
         description: 'Compiled code'
-        required: true
+        required: false
         type: string
       json_folder:
         description: 'folder with jsons'
-        required: true
+        required: false
         type: string
       images_folder:
         description: 'compressed images'
