@@ -49,12 +49,8 @@ jobs:
          vipsthumbnail $IMAGE_FOLDER*.jpeg --size 1300x2600 -o $(readlink -f "$NEW_IMAGE_FOLDER%s.jpeg")
      - name: Create ZIP file of specific folders
        run: |
-          COMPLETE_JSON=${{ inputs.complete_json }}
-          JSON_FOLDER=${{ inputs.json_folder }}
-          IMAGES_FOLDER=${{ inputs.images_folder }}
-          VIDEOS_FOLDER=${{ inputs.videos_folder }}
           mkdir artifact
-          zip -r artifact/my-release.zip $COMPLETE_JSON $JSON_FOLDER $IMAGES_FOLDER $VIDEOS_FOLDER
+          zip -r artifact/my-release.zip ${{ inputs.complete_json }} ${{ inputs.json_folder }} ${{ inputs.images_folder }} ${{ inputs.videos_folder }}
      - name: Create GitHub Release
        id: create_release
        uses: actions/create-release@v1
