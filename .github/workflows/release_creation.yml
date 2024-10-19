@@ -22,11 +22,11 @@ on:
         type: string
       images_folder:
         description: 'compressed images'
-        required: true
+        required: false
         type: string
       videos_folder:
         description: 'videos folder'
-        required: true
+        required: false
         type: string
         
 jobs:
