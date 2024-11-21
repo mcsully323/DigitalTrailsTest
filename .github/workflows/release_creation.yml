@@ -2,7 +2,7 @@ name: Release Creation
 
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       image_folder: 
         description: 'The folder with the original images'
