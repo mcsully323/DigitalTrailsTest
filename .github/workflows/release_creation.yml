@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       image_folder: 
-        description: 'The folder with the original image'
+        description: 'The folder with the original images'
         required: true
         type: string
       new_image_folder:
